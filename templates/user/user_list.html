@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+    <div>
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">last name</th>
+                <th scope="col">first name</th>
+                <th scope="col">email</th>
+                <th scope="col">balance</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in object_list %}
+                <tr>
+                    <td>{{ user.last_name|default:'---' }}</td>
+                    <td>{{ user.first_name|default:'---' }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.balance|default:'0' }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

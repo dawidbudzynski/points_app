@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+    <div>
+        <a type="button" class="btn btn-primary btn-lg btn-block" href='{% url 'user:list' %}'>List users</a>
+        <a type="button" class="btn btn-secondary btn-lg btn-block" href='{% url 'user:list' %}'>Change balance</a>
+    </div>
+{% endblock %}
