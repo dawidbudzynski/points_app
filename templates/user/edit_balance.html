@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags i18n staticfiles %}
+{% block content %}
+    <div class="form">
+        <table class="table table-light">
+            <tr>
+                <td>
+                    <form action="{% url 'user:edit-balance' %}" method="POST" class="form-group">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <input type="submit" value="{% trans 'Submit operation' %}"
+                               class="btn btn-primary btn-lg btn-block">
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}
