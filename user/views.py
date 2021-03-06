@@ -11,14 +11,16 @@ from user.models import User
 
 
 class UserListView(ListView):
-    ordering = ['last_name', 'first_name']
+    """Lists all users (except superuser)"""
 
     def get_queryset(self):
-        queryset = User.objects.filter(is_superuser=False)
+        queryset = User.objects.filter(is_superuser=False).order_by('last_name', 'first_name')
         return queryset
 
 
 class UserEditBalanceView(View):
+    """Displays form which allows to change user balance"""
+
     def get(self, request):
         return render(
             request,
@@ -42,10 +44,10 @@ class UserEditBalanceView(View):
                 user_object.save()
 
                 messages.add_message(
-                    request, messages.SUCCESS, _(f'Balance for user {user.email} has been changed successfully'))
+                    request, messages.SUCCESS, _(f"Balance for user {user.email} has been changed successfully"))
                 return HttpResponseRedirect(reverse('user:list'))
 
-            messages.add_message(request, messages.WARNING, _(f'User {user.email} doesn\'t exist'))
+            messages.add_message(request, messages.WARNING, _(f"User {user.email} doesn't exist"))
             return HttpResponseRedirect(reverse('user:list'))
 
         messages.add_message(request, messages.ERROR, form.errors)
