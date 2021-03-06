@@ -5,7 +5,7 @@
 ## General info
 
 A web application made using Python 3, Django 2, and PostgreSQL.  
-<br/>Application allows import users from csv file and change their balance.
+<br/>Application allows to import users from csv file and change their balance.
 
 ## Main functions
 
