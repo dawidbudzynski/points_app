@@ -25,13 +25,28 @@ To run this project locally:
 
 1. In docker-compose.yaml replace `temporary_secret_key` with your own secret
    key (https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/#secret-key)
-2. Start containers with
+   
 
+2. Build containers and run collectstatic
+```
+docker-compose build
+docker-compose run app sh -c 'python manage.py collectstatic'
+```
+2. Import users from csv file
+```
+docker-compose run app sh -c 'python manage.py import_users_data temp/users.csv'
+```
+3. Start containers
 ```
 docker-compose up
 ```
+4. Application will be available at `http://0.0.0.0:8000/`
+   
 
-3. Application will be available at `http://0.0.0.0:8000/`
+5. To run tests
+```
+docker-compose run app sh -c 'python manage.py test'
+```
 
 ## Heroku deployment
 
